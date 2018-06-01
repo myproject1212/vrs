@@ -1,0 +1,46 @@
+name: ${project.name}
+version: ${project.version}
+
+#TODO: Replace app static id when we get it.
+ehi:
+  auth:
+    ws:
+      appStaticId: 766504850
+
+appsec:
+  logexp:
+    local:
+      appStaticId: ${ehi.auth.ws.appStaticId}
+
+rsi:
+  application:
+    version: 1
+    name: VehicleRoutingServices
+    environment: ${erac.serverLevel}
+  appsec:
+    username: ${u.appsec}
+    password: ${p.appsec}
+    servers:
+  url: http://localhost:8080/
+
+paths:
+  /hello:
+    get:
+      summary: Returns Hello
+      description: Returns Hello
+      responses:
+        '200':    # status code
+          description: A string of Hello
+          content:
+            application/json:
+              schema:
+                type: String
+                items:
+                  type: String
+
+mail:
+  host: mailhost
+
+jackson:
+  serialization:
+    indent-output: true
